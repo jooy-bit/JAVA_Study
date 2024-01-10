@@ -34,8 +34,23 @@ public class MyClass2 {
     }
 
     public void setField3(double[] f3){
-        field3 = f3;
+        // field3 = f3;                    //객체가 의도하지 않아도 모배열값이 변경됨
+        field3= new double[f3.length];
+        for (int i = 0; i < f3.length; i++) {
+            field3[i]=f3[i];
+        }
     }
+
+    // 모 배열에 있는 값을 퍼플릭이 바꾸지 못하도록 주소를 새로 하나 만든다.
+    // public void setField3(double[] f3)
+    // {
+    //     this.f3 = new setField3[f3.length];
+
+    //     for (int i = 0; i < f3.length; ++i) 
+    //     {
+    //         this.f3[i]=f3[i].clone;  
+    //     }
+    // }
    
     //모든 인스턴스 필드 값을 출력해주는 메소드
     public void printData(){

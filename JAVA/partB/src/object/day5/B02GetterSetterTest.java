@@ -1,6 +1,6 @@
 package object.day5;
 
-import java.util.Arrays;
+// import java.util.Arrays;
 
 public class B02GetterSetterTest {
     
@@ -39,7 +39,7 @@ public class B02GetterSetterTest {
 
         momo.setField3(tempArray);
         System.out.println("변경된 field3 확인합니다");
-        momo.printData();
+        momo.printData();//
 
     }
 
