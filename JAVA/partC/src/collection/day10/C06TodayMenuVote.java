@@ -35,6 +35,7 @@ public class C06TodayMenuVote {
                 System.out.println("최다 득표 결과");
                 // Comparator<Entry<String,Integer>> comparator= (e1,e2)-> {return e1.getValue()-e2.getValue();};//아래랑 같은 식
                 Comparator<Entry<String,Integer>>comparator = new Comparator<Entry<String,Integer>>() {
+                    @Override
                     public int compare(Entry<String,Integer> e1,Entry<String,Integer> e2){
                         return e1.getValue()-e2.getValue();
                     }                    
@@ -52,8 +53,9 @@ public class C06TodayMenuVote {
                 map.put(key, 1);
                 menu += ","+key;
             }
+            
         }
-
+        sc.close();
     }//main
     
 }//class

@@ -59,6 +59,6 @@ public class C05MapExample {
         //조회기능
         System.out.println(map.containsKey("js"));
         System.out.println(map.containsValue("트와이스"));
-
+        sc.close();
     }//main
 }//class
