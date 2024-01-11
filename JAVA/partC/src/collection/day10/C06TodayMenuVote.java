@@ -33,7 +33,12 @@ public class C06TodayMenuVote {
                 System.out.println("투표가 종료되었습니다.");
                 System.out.println(map.entrySet());
                 System.out.println("최다 득표 결과");
-                Comparator<Entry<String,Integer>> comparator= (e1,e2)-> {return e1.getValue()-e2.getValue();};
+                // Comparator<Entry<String,Integer>> comparator= (e1,e2)-> {return e1.getValue()-e2.getValue();};//아래랑 같은 식
+                Comparator<Entry<String,Integer>>comparator = new Comparator<Entry<String,Integer>>() {
+                    public int compare(Entry<String,Integer> e1,Entry<String,Integer> e2){
+                        return e1.getValue()-e2.getValue();
+                    }                    
+                };
                 Entry<String,Integer> maxEntry = Collections.max(map.entrySet(),comparator); //Collections.max 가장큰값
                 System.out.println("\t 메뉴이름: "+ maxEntry.getKey());
                 System.out.println("\t 득표수 : "+maxEntry.getValue());
