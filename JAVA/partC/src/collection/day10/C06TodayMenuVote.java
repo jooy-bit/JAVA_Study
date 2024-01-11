@@ -33,7 +33,8 @@ public class C06TodayMenuVote {
                 System.out.println("투표가 종료되었습니다.");
                 System.out.println(map.entrySet());
                 System.out.println("최다 득표 결과");
-                // Comparator<Entry<String,Integer>> comparator= (e1,e2)-> {return e1.getValue()-e2.getValue();};//아래랑 같은 식
+                // Comparator<Entry<String,Integer>> comparator= (e1,e2)-> {return e1.getValue()-e2.getValue();};//아래랑 같은 식   
+                //Entry<String,Integer> key, Value 한쌍을 묶은 데이터 타임
                 Comparator<Entry<String,Integer>>comparator = new Comparator<Entry<String,Integer>>() {
                     @Override
                     public int compare(Entry<String,Integer> e1,Entry<String,Integer> e2){
