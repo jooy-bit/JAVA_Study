@@ -30,12 +30,12 @@ public class C01ListExample {
         System.out.println("항목 변경 후 리스트"+strlist);
         strlist.set(2,"!!!!");              //수정
         System.out.println("항목 변경 후 리스트"+strlist);
-
+        
         System.out.println("\n 특정 인덱스 위치의 요소값 가져오기");
         System.out.println("strlist.get(0)= "+strlist.get(0));
         System.out.println("strlist.get(3)= "+strlist.get(3));
         // System.out.println("strlist.get(9)= "+strlist.get(9));//error Index 9 out of bounds for length 6
-
+        
         //addAll
         List<String> sublist = new ArrayList<>();
         sublist.add("투바투"); sublist.add("세븐틴");
@@ -44,28 +44,36 @@ public class C01ListExample {
         System.out.println("\n strlist.addAll(strlist): "+strlist);
         strlist.add("아이브");
         System.out.println("\n strlist.add(중복값): "+strlist);
-
+        
         //조회 기능 -리스트에서 요소 찾기
         //contains
         strlist.contains("레드벨벳");
         System.out.println("strlist.contains(\"레드벨벳\") : "+strlist.contains("레드벨벳"));
-
+        
         //indexOf
         strlist.indexOf("아이브");
         System.out.println("strlist.indexOf(\"아이브\") : "+strlist.indexOf("아이브"));
-
+        
         //lastIndexOf
         strlist.lastIndexOf("르세라핌");
         System.out.println("strlist.lastIndexOf(\"르세라핌\") : "+strlist.lastIndexOf("르세라핌"));
-
-
+        
+        
         System.out.println("\n\n리스트에서 항목 찾기");
         System.out.println("\t 리스트에 처음 `아이브` 어디 있음? " + strlist.indexOf("아이브"));
         System.out.println("\t 리스트에 마지막 `아이브` 어디 있음? " + strlist.lastIndexOf("아이브"));
         System.out.println("\t 리스트에 `뉴진스` 있음? " + strlist.contains("뉴진스"));
         System.out.println("\t 리스트에 `뉴진스` 어디 있음? " + strlist.indexOf("뉴진스"));
         
-    }
+        
+        strlist.removeAll(sublist);
+        System.out.println("항목 변경 후 리스트"+strlist);
+        // strlist.clear();
+        // System.out.println("항목 변경 후 리스트"+strlist);
+        // strlist.sort(); //정렬
+
+        
+    }//main
     
 }
 /* 
