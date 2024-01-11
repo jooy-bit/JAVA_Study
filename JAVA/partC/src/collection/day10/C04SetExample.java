@@ -17,11 +17,11 @@ public class C04SetExample {
         System.out.println("~~~~~HashSet~~~~~");
         System.out.println("set: "+set);
         System.out.println("set.size(): "+set.size());
-        /* 
-         * ~~~~~HashSet~~~~~
-            set: [아이브, 잇지, 트와이스, 뉴진스, 블랙핑크]
-            set.size(): 5
-         */
+        System.out.println("");
+        for (String temp : set) {
+            System.out.println("\t set 요소: "+temp);            
+        }
+        //for (int i = 0; i < args.length; i++) {      } //fori 형식
 
         Set<String> set2 = new LinkedHashSet<>();   
         //본래 Set은 무작위 접근 

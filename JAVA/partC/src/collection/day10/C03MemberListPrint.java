@@ -1,10 +1,8 @@
-package collection;
+package collection.day10;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import collection.day10.Member;
 
 public class C03MemberListPrint {
     public static void main(String[] args) {
