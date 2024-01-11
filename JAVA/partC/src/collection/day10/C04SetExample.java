@@ -21,8 +21,6 @@ public class C04SetExample {
          * ~~~~~HashSet~~~~~
             set: [아이브, 잇지, 트와이스, 뉴진스, 블랙핑크]
             set.size(): 5
-
-
          */
 
         Set<String> set2 = new LinkedHashSet<>();   
@@ -40,6 +38,7 @@ public class C04SetExample {
         System.out.println("set2.size(): "+set2.size());
         
         Set<String> set3 = new TreeSet<>();
+        //이진트리 알고리즘을 이용해 데이터를 정렬된 방식을 접근
         set3.add("트와이스");
         set3.add("아이브");
         set3.add("잇지");
