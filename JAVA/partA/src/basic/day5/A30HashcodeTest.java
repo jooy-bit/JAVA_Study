@@ -1,15 +1,18 @@
 package basic.day5;
 
+import java.util.Arrays;
+
 public class A30HashcodeTest {
     public static void main(String[] args) {
         
     int[] iArray= new int[10];
+
     String message = "Hello World:)";
     
     //hashcode는 참조값(식별값)을 만드는 해쉬함수로 생성된 결과입니다.
 
     System.out.println(iArray); //배열의 식별값을 보여줍니다.(16진수 8자리)
-    System.out.println("초기 hashCoe: "+ iArray.hashCode()); //해쉬코드값을 가져옵니다(10진수)
+    System.out.println("초기 hashCode: "+ iArray.hashCode()); //해쉬코드값을 가져옵니다(10진수)
     System.out.println("배열 요소값을 변경한 후 해시코드: "+Integer.toHexString(iArray.hashCode()));//10진수를 16진수로 변환합니다
     //결론: 배열값이 변경되어도 메모리의 위치는 동일합니다
 
