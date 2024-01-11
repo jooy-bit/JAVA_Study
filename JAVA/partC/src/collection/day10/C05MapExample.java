@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class C05MapExample {
 
     /* 
-     * Map<K,V> : key 값으로 value를 가져오기
+     * Map<K,V> : key 값으로 value를 가져오기. key, value는 모든 타입 Object 가능
      *            key 는 중복된 값을 가질 수 없다. key와 value 모두 순서 X
      *            맵에 입력한 순서대로 접근해야 한다면 LinkedHashMap
      *            또는 정렬(key 기준)된 방식으로 접근해야한다면 TreeMap
@@ -49,10 +49,16 @@ public class C05MapExample {
                                                                                 map.get(temp)));    //value
         }
         System.out.println("~~~~ for 반복자를 이용한 set 의 값 가져오기 ~~~~");
-
         cnt=0;
         for (String key : map.keySet()) 
             System.out.println(String.format("count %d , key: %s , value: %s",cnt++,key,map.get(key))); 
             
+
+        System.out.println(map.hashCode());
+        System.out.println(map.values());
+        //조회기능
+        System.out.println(map.containsKey("js"));
+        System.out.println(map.containsValue("트와이스"));
+
     }//main
 }//class
