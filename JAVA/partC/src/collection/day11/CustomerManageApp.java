@@ -79,11 +79,13 @@ public class CustomerManageApp {
                 System.out.print("검색할 회원 이름을 입력하세요._");
                 findUser =System.console().readLine();
                 list = findAllCustomer(findUser);
+                listCustomer(list);
                 break;
             case 2:
                 System.out.print("검색할 회원 등급을 입력하세요._");
                 int findGroup = Integer.parseInt(System.console().readLine());
                 list = findAllCustomer(findGroup);
+                listCustomer(list);
                 break;
             default:
             System.out.println("1,2번 안에서 다시 선택해주세요.");
@@ -96,11 +98,11 @@ public class CustomerManageApp {
     private void PrintCustomer() {
         System.out.println("회원 정보를 출력합니다");
         System.out.println(String.format("%20s %20s %20s", "NAME","PHONE","GROUP"));
-        PrintCustomerlist(users);
+        listCustomer(users);
     }
 
     //출력메소드
-    private void  PrintCustomerlist(List<Customer>users){
+    private void  listCustomer(List<Customer>users){
         for (Customer user : users) {
             System.out.println(String.format("%20s %20s %20s", user.getName(),user.getPhone(),user.getGroup()));
         }
@@ -108,28 +110,23 @@ public class CustomerManageApp {
     
     
     private void modifyCustomer() {
+        System.out.print("찾으시는 회원 이름을 작성하세요._");
         String modiUser = System.console().readLine();
-        String modiPhone; int modiGroup;
         for (int i =0; i<users.size(); i++) {
             if (users.get(i).getName().equals(modiUser)) {
                 System.out.println("인덱스"+i+" 에서 회원을 찾았습니다");
-                System.out.print("수정하려면 엔터, 취소는 n 을 눌러주세요.");
-                if (System.console().readLine().equals("n")) 
-                    continue;
-                }else{
-                    System.out.println("변경하실 정보를 입력하세요");
-                    System.out.print("회원 번호를 입력하세요._");
-                    modiPhone = System.console().readLine();
-                    System.out.print("회원 등급을 입력하세요._");
-                    modiGroup = Integer.parseInt(System.console().readLine());
-                    users.get(i).modify(modiPhone,modiGroup);
-                    return;
+                listCustomer(findAllCustomer(modiUser));
+                System.out.println("변경하실 정보를 입력하세요");
+                System.out.print("회원 번호를 입력하세요._");
+                String modiPhone = System.console().readLine();
+                System.out.print("회원 등급을 입력하세요._");
+                int modiGroup = Integer.parseInt(System.console().readLine());
+                users.get(i).modify(modiPhone,modiGroup);
+                listCustomer(findAllCustomer(modiUser));
+            }else{
+                System.out.println("찾으시는 회원 정보가 없습니다");
             }
-            
-            
         }
-    
-    
     }
 
 
