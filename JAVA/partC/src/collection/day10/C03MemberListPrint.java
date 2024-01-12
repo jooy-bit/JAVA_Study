@@ -7,7 +7,6 @@ import java.util.List;
 public class C03MemberListPrint {
     public static void main(String[] args) {
         List<Member> list = new ArrayList<>();
-        System.out.println("1234567890123456789012345678901234567890");
         list.add(new Member("momo",23));
         list.add(new Member("nana",22));
         list.add(new Member("momo",25));

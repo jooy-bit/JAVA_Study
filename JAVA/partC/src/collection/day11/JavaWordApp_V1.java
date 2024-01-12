@@ -69,26 +69,69 @@ public class JavaWordApp_V1 {
     private void initialize() {
         // words 리스트 요소 몇개만 저장해서 초기화 테스트용
        words.add(new JavaWord("public", "공용의", 1));
+       words.add(new JavaWord("public", "공동의", 1));
        words.add(new JavaWord("private", "사적인", 1));
        words.add(new JavaWord("iterator", "반복자", 3));
        words.add(new JavaWord("appication", "응용프로그램", 2));
     }
 
-    private void removeWord() {
-       
-    }
 
-    private void searchWord() {
-        // TO DO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'searchWord'");
+    private void removeWord() {
+        System.out.println("\t :: 단어 삭제합니다 ::");
+        System.out.print("삭제하실 단어를 영문으로 입력하세요._");
+        String rvEng =System.console().readLine();
+        boolean isFind = false;
+        for (int i = 0; i < words.size(); i++) {
+            if(words.get(i).getEnglish().equals(rvEng)){ 
+            isFind= true;
+            System.out.println("인덱스"+i+" 에서 단어를 찾았습니다");
+            System.out.print("삭제하려면 엔터, 취소는 n 을 눌러주세요.");
+            if (System.console().readLine().equals("n")) 
+                continue;
+            }else{words.remove(i);
+        }
+        if (isFind=false)System.out.println("찾는 단어가 단어장에 없습니다. 추가해주세요.");
     }
+}
+
+
+    //리스트에 동일한 단어가 2번 저장되었다면?  
+    //리스트에 없는 단어를 조회한다면?
+    private void searchWord() {
+        System.out.println("\t :: 단어 검색합니다 ::");
+        System.out.print("찾으시는 단어를 영문으로 입력하세요._");
+        String find =System.console().readLine();
+        boolean isFind = false;
+        for (JavaWord word : words) {
+            if (word.getEnglish().equals(find)) {            //문자열 비교는 equels
+                System.out.println("검색 결과: "+word.getEnglish());
+                System.out.println("~".repeat(70));
+                System.out.println(String.format("%20s %20s %20s", "ENGLISH","KOREAN","LEVEL"));
+                System.out.println(String.format("\t     %-20s  %-10s \t%4s", word.getEnglish(),word.getKorean(),word.getLevel()));
+                isFind = true;      //2) 찾는 단어가 2개 이상 나왔을때
+                //return; //단어 한개 찾으면 searchWord 메소드 종료
+            }
+        }
+        if (isFind==false) {
+            System.out.println("찾는 단어가 단어장에 없습니다. 추가해주세요.");            
+        }
+        //System.out.println("찾는 단어가 단어장에 없습니다. 추가해주세요.");
+    }       
+    
+    
+
     private void listWord() {
         System.out.println("\t :: 단어 목록 출력합니다 ::");
+
         System.out.println(String.format("%20s %20s %20s", "ENGLISH","KOREAN","LEVEL"));
+        System.out.println("~".repeat(70));
         for (JavaWord javaWord : words) {
             System.out.println(String.format("\t     %-20s  %-10s \t%4s", javaWord.getEnglish(),javaWord.getKorean(),javaWord.getLevel()));
         }
+        System.out.println("~".repeat(70));
     }
+
+
     private void addWord() {
         System.out.println("\t :: 단어 등록합니다 ::");
         System.out.print("영어 단어 입력하세요. _");
@@ -103,6 +146,4 @@ public class JavaWordApp_V1 {
     }
     
 
-        
-    
 }
