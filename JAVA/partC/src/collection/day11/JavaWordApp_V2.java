@@ -136,7 +136,7 @@ public class JavaWordApp_V2 {
             case "2":
                 System.out.print("검색할 레벨을 숫자로 입력하세요._");
                 int level= Integer.parseInt(System.console().readLine());
-                list = searchAllWordByLevel(level);
+                list = searchAllWord(level);
                 break;
         
             default:
@@ -148,7 +148,7 @@ public class JavaWordApp_V2 {
             else printWordList(list);
     }
 
-    private List<JavaWord> searchAllWordByLevel(int level){
+    private List<JavaWord> searchAllWord(int level){
         List<JavaWord> list = new ArrayList<>();                //검색 결과 저자하는 리스트
         for(JavaWord word : words){
             if (word.getLevel()==level) {

@@ -6,8 +6,24 @@ public class Customer {
     private int group; //1.일반 2.vip 3.기타
 
     //커스텀 생성자
-    
+    public Customer(String name,String phone,int group){
+        this.name = name;
+        this.group = group;
+        this.phone = phone;
+    }
     //getter
+    public int getGroup() {
+        return group;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
 
 
     //setter xx 
@@ -20,6 +36,7 @@ public class Customer {
     @Override
     public String toString() {
         // 테스트용
-        return super.toString();
+        
+        return this.name+", "+this.phone+", "+this.group;
     }
 }
