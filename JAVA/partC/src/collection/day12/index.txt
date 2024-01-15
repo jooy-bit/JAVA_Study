@@ -1,0 +1,69 @@
+       private void addWord() {
+            System.out.println("\t :: 단어 등록합니다 ::");
+            System.out.print("영어 단어 입력하세요. _");
+            String english = System.console().readLine();
+            System.out.print("한글 의미 입력하세요. _");
+            String korean = System.console().readLine();
+            System.out.print("단어 레벨 입력하세요. (1:초급 2:중급 3:고급)_");
+            int level = Integer.parseInt(System.console().readLine());
+    
+            words.add(new JavaWord(english, korean, level));
+        }
+
+
+    private void removeWord() {
+        System.out.println("\t :: 단어 삭제합니다 ::");
+        System.out.print("삭제하실 단어를 영문으로 입력하세요._");
+        String rvEng =System.console().readLine();
+        boolean isFind = false;
+        for (int i = 0; i < words.size(); i++) {        //for(JavaWord w : words) ->오류 words의 변화로 오류가 생김
+            if(words.get(i).getEnglish().equals(rvEng)){ 
+            isFind= true;    
+            System.out.println("단어를 찾았습니다>>> " +words.get(i));
+            System.out.print("삭제하려면 엔터, 취소는 n 을 눌러주세요.");
+            if (System.console().readLine().equals("n")) 
+                continue;
+            }else{words.remove(i);
+                i--;
+            }    
+            //삭제 후 다음 인덱스는 하나 빼야함
+        if (isFind=false)System.out.println("찾는 단어가 단어장에 없습니다. 추가해주세요.");    
+    }    
+}    
+
+    private void searchWordBy(){
+        System.out.println("단어를 검색합니다(1.영단어 검색 2.레벨 검색)");
+        String find = null;
+        List<JavaWord> list = null;
+        switch (System.console().readLine()) {
+            case "1":
+                System.out.print("검색할 단어를 영문으로 입력하세요._");
+                find =System.console().readLine();
+                list = searchAllWord(find);
+                break;
+            case "2":    
+                System.out.print("검색할 레벨을 숫자로 입력하세요._");
+                int level= Integer.parseInt(System.console().readLine());
+                list = searchAllWord(level);
+                break;
+        
+            default:    
+            System.out.println("1,2만 입력하세요");
+                break;
+        }        
+        System.out.println();
+        if (list.size()==0) System.out.println();
+            else printWordList(list);
+    }        
+    
+
+
+    
+
+
+    private void listWord() {
+        System.out.println("\t :: 단어 목록 출력합니다 ::");
+        System.out.println(String.format("%20s %20s %20s", "ENGLISH","KOREAN","LEVEL"));
+        System.out.println("~".repeat(70));
+        printWordList(words);
+    }

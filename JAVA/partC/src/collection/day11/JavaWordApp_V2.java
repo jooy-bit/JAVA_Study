@@ -81,15 +81,17 @@ public class JavaWordApp_V2 {
         System.out.print("삭제하실 단어를 영문으로 입력하세요._");
         String rvEng =System.console().readLine();
         boolean isFind = false;
-        for (int i = 0; i < words.size(); i++) {
+        for (int i = 0; i < words.size(); i++) {        //for(JavaWord w : words) ->오류 words의 변화로 오류가 생김
             if(words.get(i).getEnglish().equals(rvEng)){ 
             isFind= true;
-            System.out.println("인덱스"+i+" 에서 단어를 찾았습니다");
+            System.out.println("단어를 찾았습니다>>> " +words.get(i));
             System.out.print("삭제하려면 엔터, 취소는 n 을 눌러주세요.");
             if (System.console().readLine().equals("n")) 
                 continue;
             }else{words.remove(i);
-        }
+                i--;
+            }
+            //삭제 후 다음 인덱스는 하나 빼야함
         if (isFind=false)System.out.println("찾는 단어가 단어장에 없습니다. 추가해주세요.");
     }
 }
