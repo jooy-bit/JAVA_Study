@@ -2,7 +2,7 @@ package io.day12;
 
 import java.util.Scanner;
 
-public class TryCatchTest {
+public class D01TryCatchTest {
     public static void main(String[] args) {
         // 예외 처리 구문 : 비정상적인 종료에 대해 사용자에게 전달 또는 이후 명령 계속 실행
         //NumberFormatException,ArrayIndexOutOfBoundsException는 예외처리가 강제가 아님

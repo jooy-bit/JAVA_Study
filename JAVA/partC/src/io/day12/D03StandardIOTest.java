@@ -4,7 +4,8 @@ import java.io.IOException;
 
 //표준 입출력 키보드 테스트
 //키보드 입력 : new Scanner(System.in), 또는 System.console().readLine()
-public class StandardIOTest {
+//표준입출력은 모든 글자가 2바이트 => window treminal incoding ANSI
+public class D03StandardIOTest {
     public static void main(String[] args) {
         int b;
         System.out.println("입력하세요. ↓");

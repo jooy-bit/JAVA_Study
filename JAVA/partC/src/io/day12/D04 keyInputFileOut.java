@@ -18,6 +18,13 @@ public class keyInputFileOut {
             System.out.println("총 입력 바이트 수 :  "+count);
         } catch (IOException e) {
             System.out.println("예외: "+e.getMessage());
+        }finally{
+            //입출력 자원해제는 여기서 하세요. 예외 발생 상관없이 처리할 명령어
+            try {fos.close();} catch (IOException e) {}
         }
     }
 }
+//File Input -> 화면(표준) 출력
+//File Input -> File Output (파일복사)
+//byte 기반 스트림은 문자형식의 파일이 아닐때
+//문자기반 스트림 : 문자단위 입출력.

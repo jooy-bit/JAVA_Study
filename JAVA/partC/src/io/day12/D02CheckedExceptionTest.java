@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 //File Class : 운영체제 파일시스템을 다루는 시스템 클래스
-public class CheckedExceptionTest {
+public class D02CheckedExceptionTest {
     public static void main(String[] args) {
         //생성하려는 파일의 이름으로 File객체를 정의
         // File file = new File("F:\\test.md"); //지정된 경로를 찾을 수 없습니다
