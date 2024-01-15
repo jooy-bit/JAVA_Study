@@ -1,4 +1,4 @@
-package collection.myappX;
+package collection.myapp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class JavaWordBookX {
     public void addWord(JavaWordX word){
         this.wordBook.put(word.getEnglish(), word);
     }
-
+    //MAP 의 특징 key 값을 이용해서 조회와 삭제
     //단어 조회
     public JavaWordX searchWord(String english){
         return this.wordBook.get(english);
@@ -37,30 +37,35 @@ public class JavaWordBookX {
         this.wordBook.remove(english);
     }
 
-    //전체 단어 출력하기
-    public void wordAllPrint(){
-        //TreeMap은 정렬되어 있으므로 Map의 values 를 리스트로 변환하여 출력메소드로 전달하기
-        List<JavaWordX> all =  new ArrayList<>(this.wordBook.values());      // **** 
-        wordListPrint(all);
-    }
-
+    
     //인자로 전달된 list 출력하기
-    public void wordListPrint(List<JavaWordX> list){
+    public static void print(){
         System.out.println("~".repeat(20)+"~ 단어장 ~" + "~".repeat(20));
         System.out.println(String.format("%-15s %-15s\t %s",
-                                        "<english>","<korean>","<level>"));
-        for( JavaWordX word : list) {
+        "<english>","<korean>","<level>"));
+        for( JavaWordX word : this.wordBook.values()) {
             System.out.println(String.format("%-15s %-15s\t %d",
-                            word.getEnglish(),word.getKorean(), word.getLevel()));
+            word.getEnglish(),word.getKorean(), word.getLevel()));
         }
     }
-
+    
     public List<JavaWordX> searchWordByLevel(int level) {
         List<JavaWordX> results = new ArrayList<>();
         // TO DO : 인자로 전달된 level 만 results 리스트에 저장하기
         for ( JavaWordX word : this.wordBook.values()){
-
+            
         }
         return results;
+    }
+    
+    public void wordListPrint(List<JavaWordX> list) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'wordListPrint'");
+    }
+    //전체 단어 출력하기
+    public void wordAll(){
+        //TreeMap은 정렬되어 있으므로 Map의 values 를 리스트로 변환하여 출력메소드로 전달하기
+        List<JavaWordX> all =  new ArrayList<>(this.wordBook.values());      // **** 
+        print(all);
     }
 }

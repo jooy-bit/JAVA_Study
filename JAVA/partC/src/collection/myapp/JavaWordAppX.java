@@ -1,4 +1,4 @@
-package collection.myappX;
+package collection.myapp;
 
 import java.util.List;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 public class JavaWordAppX {
 
      public static void main(String[] args) {
-        
+        //JavaWord는 단어장 객체, JavaWordBook은 단어장 객체
         //단어장을 시작하는 프로그램입니다.
         //1. 단어장을 생성
         JavaWordBookX myBook = new JavaWordBookX();
@@ -22,7 +22,7 @@ public class JavaWordAppX {
         myBook.addWord(new JavaWordX("binary", "2진수의", 3));
 
         //메모장 출력
-        myBook.wordAllPrint();
+        myBook.print();
 
         //3. 단어 조회
         //1) 영어단어 입력하면 찾아주기
@@ -35,6 +35,9 @@ public class JavaWordAppX {
           myBook.wordListPrint(list);
         
           //4. 단어 삭제
+          JavaWordX results = myBook.searchWord(findText);
+          myBook.removeWord(findText);
+
 
 
      }

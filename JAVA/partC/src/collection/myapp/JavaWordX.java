@@ -1,4 +1,4 @@
-package collection.myappX;
+package collection.myapp;
 
 // 자바프로그램에서 사용되는 영어단어 1개 데이터 저장할 클래스
 public class JavaWordX {
