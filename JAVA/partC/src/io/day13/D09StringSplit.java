@@ -33,13 +33,8 @@ public class D09StringSplit{
         List<Score> scoreList = new ArrayList<>();
         String line;
         try (BufferedReader br =new BufferedReader(new FileReader(filePath))){
-            while ((line=br.readLine())!=null) {
-                Score stu = makeScore(line);
-                scoreList.add(stu);
-            }            
-        } catch (IOException e) {
-            System.out.println("파일 입력오류: "+e.getMessage());
-        }
+            while ((line=br.readLine())!=null) scoreList.add(makeScore(line));
+        } catch (IOException e){System.out.println("파일 입력오류: "+e.getMessage());}
         return scoreList;
     }
 
