@@ -5,6 +5,8 @@ import java.io.IOException;
 //표준 입출력 키보드 테스트
 //키보드 입력 : new Scanner(System.in), 또는 System.console().readLine()
 //표준입출력은 모든 글자가 2바이트 => window treminal incoding ANSI
+//표준입력(콘솔장치 - 키보드) :  키보드 입력 => 입력버퍼 (저장장치,완충) =>프로그램 메모리
+// 
 public class D03StandardIOTest {
     public static void main(String[] args) {
         int b;

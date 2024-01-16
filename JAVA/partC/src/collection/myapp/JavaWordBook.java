@@ -59,11 +59,11 @@ public class JavaWordBook {
             
         }
     }
-    public List<JavaWord> searchWordsByLevel(int level){
+    public void searchWordsByLevel(int level){
         List<JavaWord> results = new ArrayList<>();
         for(JavaWord word : this.wordBook.values()){
-            if (word.getLevel()==level) 
-            return results.add(word);
+            if (word.getLevel()==level) ;
+            //return results.add(word);
         }
     }
 
