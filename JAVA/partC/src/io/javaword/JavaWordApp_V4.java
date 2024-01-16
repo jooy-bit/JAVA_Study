@@ -39,6 +39,7 @@ public class JavaWordApp_V4 {
                 removeWord(); 
                 break;
             case 5: 
+                words.fileSave();
                 System.out.println("프로그램을 종료합니다."); 
                 System.exit(0);
                 break; 

@@ -1,8 +1,10 @@
 package io.javaword;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import collection.myapp.JavaWord;
@@ -36,6 +38,20 @@ public class JavaWordList implements Wordlist{
         }
     }
     
+    //새로운 단어등록, 기존 단어 삭제 등의 변경사항을 파일에 저장하기
+    public void fileSave(){
+        File file = new File("테스트.txt");
+        try (
+            PrintWriter pw= new PrintWriter(file)
+        
+        ) 
+        { //word 에 있는 리스트에 모든 데이터를 파일로 출력하기
+            for(JavaWord word: words)
+                pw.println(word);
+        } catch (IOException e) {
+        System.out.println("파일 입력오류: "+e.getMessage());
+        }
+    }
 
     @Override
     public JavaWord getWord(int i) {
