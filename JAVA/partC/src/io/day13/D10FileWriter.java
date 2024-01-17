@@ -109,19 +109,5 @@ public class D10FileWriter {
         for (JavaWord word : list) System.out.println("생선된 개체: "+word);
     }
 
-    public static void writeByBufferTest(){
-        String treeFile = "tree.txt";
-        FileWriter fw = null;
-        try {
-            PrintWriter pw = new PrintWriter(new FileOutputStream(treeFile + ".fixed", true), "UTF-8");
-        fw = new FileWriter(treeFile,true);
-     System.out.println("파일 작성이 완료되었습니다.");
-        
-     System.out.println("파일 작성이 완료되었습니다.");
-    } catch (FileNotFoundException e) {
-        System.out.println("파일을 찾을 수 없습니다.");
-    } catch (UnsupportedEncodingException e) {
-        System.out.println("지원되지 않는 인코딩입니다.");
-    }
-}
+    
 }

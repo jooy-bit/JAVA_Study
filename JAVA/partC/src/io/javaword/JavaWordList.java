@@ -67,9 +67,9 @@ public class JavaWordList implements Wordlist{
     //단어 추가
     @Override
     public void add(JavaWord word) {
-        if (words.size()==Wordlist.MAX_LENGTH) {
-            System.out.println("단어장이 가득찼습니다. 새로 만들어주세요");
-            return;
+        if (words.size()==5) {
+            throw new IllegalArgumentException("단어장이 가득찼습니다. 새로 만들어주세요");
+            //System.out.println("단어장이 가득찼습니다. 새로 만들어주세요");
         }
         words.add(word);
     }
@@ -86,7 +86,14 @@ public class JavaWordList implements Wordlist{
     //단어를 인덱스로 삭제
     @Override
     public JavaWord remove(int index) {
-        JavaWord word = words.remove(index);    //삭제한 데이터를 리턴합니다.
+        if (index<0||index>words.size()) {
+            // throw new Exception();   //체크드
+            throw new IllegalArgumentException("삭제할 인덱스 범위가 잘못되었습니다."); //언체크드
+                                                        //새로운 Exception 객체를 생성 시 예외가 발생된다
+                                                        //발생시킬 익셉션 종류는 IllegalArgumentException와 같은 이름으로 많이 사용
+                                                        //예를 들면 웹개발 할 때는 모든 예외를 한번에 처리하기 위해 이런 방법 사용
+        }
+        JavaWord word = words.remove(index);    //index 삭제위치 //삭제한 데이터를 리턴합니다
         return word;
     }
 
