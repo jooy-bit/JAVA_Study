@@ -1,5 +1,6 @@
 package io.day14;
 
+import java.awt.FileDialog;
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,6 +10,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.swing.JFrame;
 
 //socket.png 그림참고 : 클라이언트와 서버 각각 실행하는 메소드가 다릅니다.
                     //  서버와 클라이먼트 연결 과정이 다르기 때문
@@ -33,7 +38,10 @@ public class Client {
             System.out.print("서버에게 보낼 메시지를 쓰세요__");
             dos.writeUTF("\tForm 클라이언트 >>"+ System.console().readLine());
             //이미지 파일을 서버에 보내기(업로드)
-            String filePath = "tom.gif";
+            Map<String,String> map = showDialog();
+            String filePath = map.get("folder") + map.get("fileName");
+            //파일 이름 서버에 보내기
+            dos.writeUTF(map.get("fileName"));
             FileInputStream fis = new FileInputStream(filePath);
             BufferedInputStream bis = new BufferedInputStream(fis);
             int b;
@@ -46,5 +54,20 @@ public class Client {
         }finally{
             try {socket.close();} catch (Exception e){}
         }
+    }
+     public static Map<String,String> showDialog(){
+        JFrame jf = new JFrame();
+        jf.setSize(2000, 2000);
+        jf.setVisible(false);
+        FileDialog fd = new FileDialog(jf,"File Select",FileDialog.LOAD);
+        fd.setVisible(true);
+        //System.out.println("선택한 파일 폴더: "+ fd.getDirectory());
+        //System.out.println("선택한 파일 : "+ fd.getFile());
+        //System.out.println(fd.getDirectory().replace("\\", "\\\\")+fd.getFile().replace("\\", "\\\\"));
+        Map<String,String>map = new HashMap<>();
+        map.put("folder",fd.getDirectory().replace("\\", "\\\\"));
+        map.put("fileName", fd.getFile().replace("\\", "\\\\"));
+        //map.put("fileSize", fd.getHeight());
+        return map;
     }
 }

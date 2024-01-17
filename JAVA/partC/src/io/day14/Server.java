@@ -35,7 +35,9 @@ public class Server {
             System.out.println(dis.readUTF());
 
             //이미지파일 받기
-            BufferedOutputStream bos =new BufferedOutputStream(new FileOutputStream("D:\\tomy.gif"));
+            String fileName = dis.readUTF();
+            System.out.println("\t클라이언트 업로드 파일명 :  "+fileName);
+            BufferedOutputStream bos =new BufferedOutputStream(new FileOutputStream("D:\\"+fileName));
             int b; int count =0;
             while ((b=dis.read())!=-1) {
                 bos.write(b);
