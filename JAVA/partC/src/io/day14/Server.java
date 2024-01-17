@@ -18,6 +18,8 @@ public class Server {
     public static void main(String[] args) {
         ServerSocket server = null;
         Socket socket = null;
+        BufferedOutputStream bos =null;OutputStream os =null; DataOutputStream dos =null;
+        InputStream is =null; DataInputStream dis =null;
         try {//서버소켓 생성
             server = new ServerSocket(); //서버 설정을 위한 소켓 
             server.bind(new InetSocketAddress("192.168.30.11",5050)); //서버 연결 정보 IP와 PORT 설정
@@ -25,19 +27,19 @@ public class Server {
             socket = server.accept();    //입출력스트림을 위한 소켓
             //클라이언트 연결 요청(connect)에 대한 수락
             System.out.println("__연결을 수락합니다");         //accept 정상 완료
-            OutputStream os = socket.getOutputStream();
+            os = socket.getOutputStream();
             //정수,실수,문자열 보내는 스트림
-            DataOutputStream dos = new DataOutputStream(os);    //보조 스트림
+            dos = new DataOutputStream(os);    //보조 스트림
             dos.writeUTF(("\tForm 서버 >> 환영합니다"));
             //클라이언트가 보낸 인사말 받기
-            InputStream is = socket.getInputStream();
-            DataInputStream dis = new DataInputStream(is);
+            is = socket.getInputStream();
+            dis = new DataInputStream(is);
             System.out.println(dis.readUTF());
 
             //이미지파일 받기
             String fileName = dis.readUTF();
             System.out.println("\t클라이언트 업로드 파일명 :  "+fileName);
-            BufferedOutputStream bos =new BufferedOutputStream(new FileOutputStream("D:\\"+fileName));
+            bos =new BufferedOutputStream(new FileOutputStream("c:\\Users\\Administrator\\Downloads"+fileName));
             int b; int count =0;
             while ((b=dis.read())!=-1) {
                 bos.write(b);
@@ -48,7 +50,8 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
         }finally{
-            try { server.close(); socket.close(); } catch (IOException e) {}
+            try { server.close(); socket.close();bos.close(); 
+                dos.close(); is.close();;dis.close();os.close(); } catch (IOException e) {}
         }
     }
 }

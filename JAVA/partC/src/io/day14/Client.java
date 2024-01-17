@@ -20,6 +20,9 @@ import javax.swing.JFrame;
 public class Client {
     public static void main(String[] args) {
         Socket socket =null;
+        InputStream is=null; DataInputStream dis=null;
+        OutputStream os=null; DataOutputStream dos=null;
+        FileInputStream fis =null;BufferedInputStream bis=null;
         try {
             System.out.println("[클라이언트] 프로그램 입니다");
             socket = new Socket();
@@ -28,13 +31,13 @@ public class Client {
             System.out.println("__연결성공 하였습니다");
             //서버가 클라이언트에게 데이터 보내기 : 출력 스트림
             //클라이언트와 서버가 연결된 소켓으로 출력 스트림 생성
-            InputStream is = socket.getInputStream();
-            DataInputStream dis = new DataInputStream(is);
+            is = socket.getInputStream();
+            dis = new DataInputStream(is);
             System.out.println(dis.readUTF());
 
             //서버에 인사말 보내기
-            OutputStream os = socket.getOutputStream();
-            DataOutputStream dos = new DataOutputStream(os);
+            os = socket.getOutputStream();
+            dos = new DataOutputStream(os);
             System.out.print("서버에게 보낼 메시지를 쓰세요__");
             dos.writeUTF("\tForm 클라이언트 >>"+ System.console().readLine());
             //이미지 파일을 서버에 보내기(업로드)
@@ -42,8 +45,8 @@ public class Client {
             String filePath = map.get("folder") + map.get("fileName");
             //파일 이름 서버에 보내기
             dos.writeUTF(map.get("fileName"));
-            FileInputStream fis = new FileInputStream(filePath);
-            BufferedInputStream bis = new BufferedInputStream(fis);
+            fis = new FileInputStream(filePath);
+            bis = new BufferedInputStream(fis);
             int b;
             while ((b=bis.read())!=-1) {
                 dos.write(b);
@@ -52,7 +55,8 @@ public class Client {
         } catch (IOException |InterruptedException e) {
             e.printStackTrace();
         }finally{
-            try {socket.close();} catch (Exception e){}
+            try {socket.close();is.close();dis.close();
+                os.close();dos.close();fis.close();bis.close();} catch (Exception e){}
         }
     }
      public static Map<String,String> showDialog(){
