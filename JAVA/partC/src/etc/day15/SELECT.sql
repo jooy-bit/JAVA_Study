@@ -1,9 +1,0 @@
-SELECT
-    ACOL,
-    BCOL,
-    CCOL,
-    DCOL
-FROM
-    TBL_STRING
-WHERE
-    ACOL = 'CHAR(10)';

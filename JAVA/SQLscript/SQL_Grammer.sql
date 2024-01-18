@@ -9,12 +9,17 @@
 */
 
 CREATE TABLE TBL_CONSTR(    --제역 조건 컬럼레벨 설정하기
+    bname VARCHAR2(20) UNIQUE ,    
     aname VARCHAR2(20) NOT NULL,
-    bname VARCHAR2(20) UNIQUE ,
     cno NUMBER(4) NOT NULL UNIQUE,
     dno NUMBER(4)  CHECK (dno BETWEEN 1 AND 4)
 );
 
 
 INSERT INTO TBL_CONSTR (aname,cno) VALUES ('apple',3);
---SELECT*FROM TBL_CONSTR;
+--INSERT INTO TBL_CONSTR (aname,bname, cno) VALUES ('apple','banana',3);--cno 컬럼값 중복
+INSERT INTO TBL_CONSTR (aname,bname, cno) VALUES ('apple','banana',4);--bname 컬럼값 중복
+INSERT INTO TBL_CONSTR (aname,bname, cno) VALUES ('apple','banana',5);--bname 컬럼값 중복
+SELECT*FROM TBL_CONSTR;
+
+INSERT INTO TBL_CONSTR (aname,cno,dno) VALUES ('apple',3,13);
