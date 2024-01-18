@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 
 public class LocalDateTimeTest {
     public static void main(String[] args) {
@@ -58,7 +59,5 @@ public class LocalDateTimeTest {
         System.out.println("\t"+currenDate.format(formatter));
         System.out.println("\t"+currDateTime.format(formatter2));
 
-        int[] arr = {3,4,6,7,8,33,2,2};
-        System.out.println(arr);
     }//
 }//
