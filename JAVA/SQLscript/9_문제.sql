@@ -49,7 +49,22 @@ INSERT INTO TBL_exbuy VALUES ('hongGD' , 'APLE5kg' , 1 , TO_DATE('2021-10-21 11:
 
 
 
+--(조지수)이름 내림차순 정렬하기
+SELECT * FROM  TBL_EXCUSTOMER tc  ORDER BY NAME DESC;
 
+--(조하연)ID가 'mina012' 인 회원의 가입날짜부터 현재까지 며칠(day)이 지났는지 출력하시오. 
+SELECT TO_DATE(SYSDATE,'YYYY-MM-DD') - TO_DATE(JOIN_DATE,'YYYY-MM-DD') FROM TBL_EXCUSTOMER WHERE ID = 'mina012';
 
+--(차정호)구글 이메일 유저를 구하세요
+SELECT * FROM TBL_EXCUSTOMER  WHERE EMAIL LIKE '%gmail.com';
+
+--(한주영)고객이 가장 많이 구매한 상품을 구하시오(판매 갯수로 내림차순)
+SELECT CODE ,SUM(BUYCOUNT) AS BC FROM TBL_EXBUY GROUP BY CODE ORDER BY BC DESC;
+
+--(한진만)twice ID를 사용하는 고객이 구매한 상품을 모두 구하시오
+SELECT * FROM TBL_EXBUY where ID = 'twice';
+
+--(황병훈)카테고리별로 상품갯수 구하기 (앞에 카테코리 번호 나와야 됨)
+SELECT CATEGORY ,COUNT(*) FROM TBL_EXPRODUCT GROUP BY CATEGORY;
 
 
