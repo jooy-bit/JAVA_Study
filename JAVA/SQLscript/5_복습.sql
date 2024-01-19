@@ -13,7 +13,13 @@ INSERT INTO
 VALUES 
 	(1,'김모모','momo@naver.com','2022-11-24');
 
-INSERT INTO TBL_MEMBER VALUES (2,'박나연','parkny@gmail.com','2022-10-24');
+INSERT
+	INTO
+	TBL_MEMBER
+VALUES (2,
+'박나연',
+'parkny@gmail.com',
+'2022-10-24');
 INSERT INTO TBL_MEMBER VALUES (3,'최슬기','slgichoi@naver.com','2021-09-24');
 INSERT INTO TBL_MEMBER VALUES (4,'박사나','san@gmail.com','2022-10-05');
 INSERT INTO TBL_MEMBER VALUES (5,'이나연','nayeon@gmail.com','2020-10-05');
@@ -29,36 +35,96 @@ VALUES
 --		select 조회할 열 from 테이블 이름 [where]특정 행을 조회할 조건 [order by] 정렬할 컬럼
 --				ㄴ 모든 열을 지정하는 기호 * (와일드카드 문자)
 -- 1) 모든행과 모든 열 조회
-	SELECT * FROM TBL_MEMBER; 
+SELECT
+	*
+FROM
+	TBL_MEMBER;
 -- 2) 지정된 열 `이름,이메일`의 모든 행 조회
-	SELECT NAME, EMAIL FROM TBL_MEMBER;
+SELECT
+	NAME,
+	EMAIL
+FROM
+	TBL_MEMBER;
 -- 3) 조건 `이름 박사나` 와 일치하는 행의 모든 컬럼 조회
-	SELECT NAME FROM TBL_MEMBER WHERE NAME = '박사나';
+SELECT
+	NAME
+FROM
+	TBL_MEMBER
+WHERE
+	NAME = '박사나';
 -- 4) 조건에 `이름 박사나` 와 일치하는 행의 지정된 컬럼 `이메일`조회
-SELECT EMAIL FROM TBL_MEMBER tm WHERE NAME = '박사나';
+SELECT
+	EMAIL
+FROM
+	TBL_MEMBER tm
+WHERE
+	NAME = '박사나';
 
 -- 5) 문자열의 부분 일치 (유사 조건값) 검색 : 
 -- `이름 중 성이 박`
-SELECT * FROM TBL_MEMBER tm WHERE NAME LIKE'박%';
+SELECT
+	*
+FROM
+	TBL_MEMBER tm
+WHERE
+	NAME LIKE '박%';
 -- `이름 나연` 검색
-SELECT * FROM TBL_MEMBER tm WHERE NAME LIKE'%나연';
+SELECT
+	*
+FROM
+	TBL_MEMBER tm
+WHERE
+	NAME LIKE '%나연';
+
 -- `이메일이 naver 인 회원`
-SELECT *FROM TBL_MEMBER tM WHERE EMAIL LIKE '%naver.com';
+SELECT
+	*
+	FROM TBL_MEMBER tM
+WHERE
+	EMAIL LIKE '%naver.com';
 -- 6) 여러가지 값으로 조회 : `이름이 김모모 또는 박나연 또는 강나현`
-SELECT *FROM TBL_MEMBER tm WHERE NAME IN ('김모모','박나연','강나현');
+SELECT
+	*
+	FROM TBL_MEMBER tm
+WHERE
+	NAME IN ('김모모', '박나연', '강나현');
 -- 7) 이메일 email 컬럼의 null값 조회 : 
-SELECT *FROM TBL_MEMBER tm WHERE EMAIL IS NULL;
+SELECT
+	*
+	FROM TBL_MEMBER tm
+WHERE
+	EMAIL IS NULL;
 -- 8) mno 컬럼값으로 조회
 -- mno값이 4미만 조회
-SELECT * FROM TBL_MEMBER tm WHERE MNO <4 ;
+SELECT
+	*
+FROM
+	TBL_MEMBER tm
+WHERE
+	MNO <4 ;
 -- mno 값이 1,2,5,7 이 아닌것 조회 : 
-SELECT *FROM TBL_MEMBER tm WHERE  MNO NOT IN (1,2,5,7); 
+SELECT
+	*
+	FROM TBL_MEMBER tm
+WHERE
+	MNO NOT IN (1, 2, 5, 7);
 -- mno 값이 3~6 인 것 조회  : between (AND 연산)
-SELECT *FROM TBL_MEMBER tm WHERE MNO BETWEEN 3 AND 6;
+SELECT
+	*
+	FROM TBL_MEMBER tm
+WHERE
+	MNO BETWEEN 3 AND 6;
 -- 9) 이름 순서로 모든 행과 열 조회
-SELECT *FROM TBL_MEMBER tm ORDER BY NAME ASC;
+SELECT
+	*
+	FROM TBL_MEMBER tm
+ORDER BY
+	NAME ASC;
 
 
+--DUAL 은 오라클 임시 테이블 - 수식, 함수 결과값 확인 가능
+SELECT 2+3 FROM	DUAL;
+SELECT *FROM TBL_MEMBER tm WHERE NAME IN ('이순신');
 
 
 
