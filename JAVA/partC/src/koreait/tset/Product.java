@@ -1,7 +1,9 @@
 package koreait.tset;
-public Product(){
 
-    public abstract Product {
+Public Class Product(){
+
+
+    public absStract Product {
         protected int price;
         
     }

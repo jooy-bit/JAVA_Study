@@ -1,60 +1,64 @@
 package koreait.tset;
 
 public class Bike extends Product{
+    
     private int speed;
 
     public Bike (int price,String prdName,int speed){
-        this. price = price;
-        this.prdName = prdName;
+        super(price, prdName);
         this.speed = speed;
-        class ride(){
+    } //bike
+        protected ride(){
             return system.out.print("당신은 이것을 시속 "+speed+"km로 탈 수 있습니다.");
         }
-    }  
+    
 
-    @Override
+    @OverrideS
     public sell(int percent){
-        return system.out.print(String.format("[%s] 행사 - %d%% 인하",prdName,percent));
+        System.out.print(String.format("[%s] 행사 - %d%% 인하",prdName,percent));
     }
 
 
-    public void toSring(){
+    public String toSring(){
         return "[ "+"prdName: "+prdName+", price: "+price+", speed: "+speed+" ]";
     }
-}
 
-public int getPrice(){
-    return this.price;
-}
-
-public void setPrice(int price){
-    this.price = price;
-}
-
-class Electronics extends Product(){
-    @Override
-    public sell(String itemName){
-        return system.out.print(String.format("[%s] 증정 - %s",prdName,itemName));
+    public int getPrice(){
+        return this.price;
     }
 
-    private double kwh;
-    public Electronics (int price,String prdName){
-        this. price = price;
-        this.prdName = prdName;
+    public void setPrice(int price){
+        this.price = price;
     }
 
-    public power(){
-        return kwh*24;
-    }
-}
-public void toSring(){
-    return "[ "+"prdName: "+prdName+", price: "+price+", kwh: "+kwh+" ]";
-}
+    class Electronics extends Product(){
+        @Override
+        public String sell(String itemName){
+            return System.out.print(String.format("[%s] 증정 - %s",prdName,itemName));
+        }
 
-public double getKwh(){
-    return this.getKwh;
-}
+        private double kwh;
+        public Electronics (int price,String prdName){
+            this. price = price;
+            this.prdName = prdName;
+        }
 
-public void setKwh(double kwh){
-    this.kwh = kwh;
-}
+        public void power(double kwh){
+            return this.kwh*24;
+        }
+
+        public void toSring(){
+            return "[ "+"prdName: "+prdName+", price: "+price+", kwh: "+kwh+" ]";
+        }
+
+        public double getKwh(){
+            return this.kwh;
+        }
+
+        public void setKwh(double kwh){
+            this.kwh = kwh;
+        }
+
+}//electronics
+
+}//class
