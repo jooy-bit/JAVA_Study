@@ -3,52 +3,49 @@ package koreait.tset;
 public class Bike extends Product{
     
     private int speed;
+    private int price;
 
     public Bike (int price,String prdName,int speed){
-        super(price, prdName);
+        this.prdName = prdName;
+        this.price =price;
         this.speed = speed;
     } //bike
-        protected ride(){
-            return system.out.print("당신은 이것을 시속 "+speed+"km로 탈 수 있습니다.");
-        }
+    public int getSpeed() {
+        return speed;
+    }
+
+    protected String ride(int speed){
+        return "당신은 이것을 시속 "+speed+"km로 탈 수 있습니다.";
+    }
+
+    @Override
+    public String sell(Object obj){
+        int discount = (int) obj;
+        return String.format("[%s]행사 -%d%% 인하", prdName, discount);
+    }
+    @Override
+    public String toString() {
+        return "Bike [price=" + price + ", prdName=" + prdName + ", speed=" + speed + "]";
+    }
+
+
+
+
+public class Electronics extends Product{
+    private double kwh;
+    private int price;
     
-
-    @OverrideS
-    public sell(int percent){
-        System.out.print(String.format("[%s] 행사 - %d%% 인하",prdName,percent));
-    }
-
-
-    public String toSring(){
-        return "[ "+"prdName: "+prdName+", price: "+price+", speed: "+speed+" ]";
-    }
-
-    public int getPrice(){
-        return this.price;
-    }
-
-    public void setPrice(int price){
+    public Electronics (int price,String prdName){
         this.price = price;
+        this.prdName = prdName;
     }
 
-    class Electronics extends Product(){
-        @Override
-        public String sell(String itemName){
-            return System.out.print(String.format("[%s] 증정 - %s",prdName,itemName));
-        }
-
-        private double kwh;
-        public Electronics (int price,String prdName){
-            this. price = price;
-            this.prdName = prdName;
-        }
-
-        public void power(double kwh){
+        public double power(double kwh){
             return this.kwh*24;
         }
 
-        public void toSring(){
-            return "[ "+"prdName: "+prdName+", price: "+price+", kwh: "+kwh+" ]";
+        public String toSring(){
+            return "Electronics [price=" + price + ", prdName=" + prdName + ", kwh=" + kwh + "]";
         }
 
         public double getKwh(){

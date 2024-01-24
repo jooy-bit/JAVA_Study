@@ -19,17 +19,18 @@ public class ProductApp {
 
     //[3]
        for (int i = 0; i < cart.length; i++) {
-        if (cart[i].price()>=100000) {
-            System.out.println(cart[i].toSring);
+        if (cart[i].getPrice()>=100000) {
+            System.out.println(cart[i].toSring());
         }else continue;        
        }
     //[4]
     for (int i = 0; i < cart.length; i++) {
-        if (cart[i].ride()!=null) { System.out.println("caSt[i].ride(): "+ cart[i].ride());
+        if (cart[i].ride(5)!=null) { System.out.println("caSt[i].ride(): "+ cart[i].ride());
     }
 
     //[5]
     cart[3].sell(20);
+
 
     //[6]
     cart[5].sell("사운드바");

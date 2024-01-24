@@ -1,19 +1,11 @@
 package koreait.tset;
 
-Public Class Product(){
-
-
-    public absStract Product {
-        protected int price;
-        
-    }
-    protected String ProductName() {
-        this.prdName = prdName; 
+public abstract class Product{
+    protected String prdName;
     
-    }
+    public abstract String sell (Object odj);
     
-    public abstract sell (object sellName){
-        return (String) sellName;
+    public String toSring(){
+        return "Product [prdName= "+prdName+ " ]";
     }
-    
 }
