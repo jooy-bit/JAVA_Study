@@ -46,3 +46,13 @@ public class ProductApp {
         System.out.println(cart[5].sell("사운드바"));
     }
 }
+
+/**
+ * 자바 교재 204 page
+ * 라이브러리 클래스 : product, bike, Electronics 
+ * 실행 클래스 : main 메소드를 포함하여 프로그램을 실행, main은 반드시 static, main 메소드를 위한 객체를 먼저 생성
+ * 
+ * 설명 예시 : Bike클래스의 sell 메소드 Object 인자값은 외부에서 줍니다
+ *              여기서 외부는 이 메소드를 사용하는 main 또는 다른 클래스를 말합니다
+ *              라이브러리 클래스의 특히 인스턴스 필드값은 실행될 때 결정됩니다
+ */
