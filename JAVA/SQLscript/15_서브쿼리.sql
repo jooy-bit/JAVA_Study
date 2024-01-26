@@ -100,3 +100,7 @@ FROM (
 GROUP BY COUPON.CUSTOMID
 HAVING SUM(COUPON.TOTAL)>50000;
 --고객별로 구매금액이 가장 높은 상품코드를 조회하세요 RANK 함수
+ 
+
+	 
+	
