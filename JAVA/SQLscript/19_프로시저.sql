@@ -51,3 +51,60 @@ END;
 
 
 */
+-- 인자와 리턴을 주는 형식. 저장프로시저 정의하기
+CREATE OR REPLACE PROCEDURE search_custom(   -- 프로시저 이름 설정
+      c_id IN tbl_custom.CUSTOM_ID %TYPE      -- 매개변수(인자) IN 
+)
+IS 
+   vname tbl_custom.name %TYPE ;  -- 지정된 테이블의 컬럼과 동일형식의 변수
+   vage tbl_custom.age %TYPE;
+BEGIN 
+   SELECT name,age 
+      INTO vname , vage   
+   FROM "TBL_CUSTOM" tc 
+   WHERE CUSTOM_ID =c_id;      -- 1개 행만 결과 조회되는 조건. 매개변수로 전달된 값으로 조건 실행
+   
+   DBMS_OUTPUT.PUT_LINE(CHAR(10)||'고객이름 : ' || vname);  
+   DBMS_OUTPUT.PUT_LINE(CHAR(10)||'고객나이 : ' || vage);
+EXCEPTION      -- 예외(오류)처리
+   WHEN no_data_found THEN   
+      DBMS_OUTPUT.PUT_LINE('찾는 데이터가 없습니다.');   
+END;   
+
+--저장프로시저 예시 2
+-- 구매 수량이 최대인 고객의 이름, 나이 출력하는 프로시저 : max_custom
+CREATE OR REPLACE PROCEDURE max_custom(
+   p_name OUT tbl_custom.NAME %TYPE,      -- 출력(리턴) 변수
+   p_age OUT tbl_custom.AGE %TYPE
+)
+IS
+   maxval number(5);
+   cid tbl_custom.custom_id %TYPE;
+BEGIN
+   SELECT max(quantity)		--구매 수량 최댓값
+      INTO maxval 			--조회 결과를 프로시저(일반) 변수에 저장
+   FROM tbl_buy; 
+
+   SELECT customid
+      INTO cid				-- 조회 결과를 변수에 저장
+   FROM tbl_buy
+   WHERE quantity = maxval;
+
+   SELECT name,age 
+      INTO p_name , p_age   	--출력매개변수에 저장
+   FROM "TBL_CUSTOM" tc 
+   WHERE CUSTOM_ID =cid;
+   DBMS_OUTPUT.PUT_LINE('고객이름 : ' || p_name);  
+   DBMS_OUTPUT.PUT_LINE('고객나이 : ' || p_age);
+END;
+
+-- 프로시저 실행 : 출력 매개변수가 있는 프로시저
+DECLARE
+	vname tbl_custom.name %TYPE;
+	vage TBL_CUSTOM.AGE %TYPE;
+BEGIN
+	max_custom(vname,vage);
+	DBMS_OUTPUT.PUT(CHR(10));
+	DBMS_OUTPUT.PUT('고객이름 :'||  vname);
+	DBMS_OUTPUT.PUT('고객나이 :'||  vage);
+END;	

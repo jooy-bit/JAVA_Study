@@ -32,10 +32,24 @@ WHERE tc.AGE > 20;
 
 
 -- 사과를 구매한 사람의 이름과 구매한 갯수만큼의 가격의 합을 구해줘(고길현)
-SELECT tc.NAME, sum("구매 금액의 합") FROM 
-(SELECT NAME, tp.PRICE , tp.PRICE * tb.QUANTITY "구매 금액의 합" FROM TBL_CUSTOM tc JOIN TBL_BUY tb ON tc.CUSTOM_ID = tb.CUSTOMID JOIN TBL_PRODUCT tp ON tp.PCODE = tb.PCODE AND tp.PNAME = '청송사과 5kg')
-tc GROUP BY tc.NAME;
-
+SELECT
+	tc.NAME,
+	sum("구매 금액의 합")
+FROM
+	(
+	SELECT
+		NAME,
+		tp.PRICE ,
+		tp.PRICE * tb.QUANTITY "구매 금액의 합"
+	FROM
+		TBL_CUSTOM tc
+	JOIN TBL_BUY tb ON
+		tc.CUSTOM_ID = tb.CUSTOMID
+	JOIN TBL_PRODUCT tp ON
+		tp.PCODE = tb.PCODE
+		AND tp.PNAME = '청송사과 5kg') tc
+GROUP BY
+	tc.NAME;
 
 -- with 구문이용하여 saleMoney를 그룹으로 묶고 그 중 구매합산 금액 중 20000~70000사이 값을 출력하시오(김태완)
 WITH saleMoney
@@ -214,8 +228,7 @@ AND PCODE = 'JINRMn5')
 GROUP BY PCODE;
 
 
---조지수 문제 : 30이하 회원별 구매금액을 구하고 회원으로 그룹바이해서 구매금액 합계가
-큰 순으로 정렬
+--조지수 문제 : 30이하 회원별 구매금액을 구하고 회원으로 그룹바이해서 구매금액 합계가 큰 순으로 정렬
 SELECT abc.CUSTOMID, sum(pay_sum) AS total
 FROM
 (
@@ -229,15 +242,29 @@ ORDER BY total DESC;
 
 
 -- 한주영 문제 2023년 구매 금액 5만원 이상에게 할인쿠폰을 발송하려 한다. CUSTOMID,구매 총액, 구매 일자를 구하시오.
-
-	SELECT  tc.NAME, tc.EMAIL, tb.QUANTITY * tp.PRICE AS BILLS
-	FROM TBL_BUY tb
-	LEFT JOIN TBL_PRODUCT tp ON tp.PCODE = tb.PCODE
-	RIGHT JOIN TBL_CUSTOM tc ON tc.CUSTOM_ID = tb.CUSTOMID 
-	WHERE TO_CHAR(tb.BUY_DATE,'YYYY')='2023'
-	GROUP BY tb.QUANTITY , tp.PRICE, tc.EMAIL, tc.NAME
-	HAVING SUM(QUANTITY * PRICE)>50000
-	ORDER BY (tb.QUANTITY * tp.PRICE) DESC;
+SELECT
+	tc.NAME,
+	tc.EMAIL,
+	tb.QUANTITY * tp.PRICE AS BILLS
+FROM
+	TBL_BUY tb
+LEFT JOIN TBL_PRODUCT tp 
+	ON
+	tp.PCODE = tb.PCODE
+RIGHT JOIN TBL_CUSTOM tc 
+	ON
+	tc.CUSTOM_ID = tb.CUSTOMID
+WHERE
+	TO_CHAR(tb.BUY_DATE, 'YYYY')= '2023'
+GROUP BY
+	tb.QUANTITY ,
+	tp.PRICE,
+	tc.EMAIL,
+	tc.NAME
+HAVING
+	SUM(QUANTITY * PRICE)>50000
+ORDER BY
+	(tb.QUANTITY * tp.PRICE) DESC;
 
 
 -- 차정호 문제 :문제 햇반의 총 매출과 팔린 갯수 산사람의 회원 아이디를 구하세요
