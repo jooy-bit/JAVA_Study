@@ -28,10 +28,20 @@ public class TblbuyDao {
     
     
     //[2]구매 취소 
-    public void delete(){
-        String sql = "delete from tbl_buy where "
+    public void delete(BuyVo vo){
+        String sql = "delete from tbl_buy where buy_idx =?";
+        try (Connection connection = getConnection();
+            PreparedStatement pstmt = connection.prepareStatement(sql)){
+                pstmt.setString(1,vo.getBuy_idx());
+                pstmt.executeUpdate();
+            }catch (SQLException e) {
+            System.out.println("delete 실행 예외 : "+e.getMessage());
+        }
     }
     
     
     //[3]구매 수량 변경
+    public void change(BuyVo vo){
+        String sql = "update tbl_buy set "
+    }
 }

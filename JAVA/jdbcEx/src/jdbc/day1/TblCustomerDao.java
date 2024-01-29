@@ -27,7 +27,7 @@ public class TblCustomerDao {
         }
     }
 
-    //회원 정보 수정 e,ail, age 수정가능하게
+    //회원 정보 수정 email, age 수정가능하게
     public void modify(CustomerVo vo){
         String sql ="UPDATE TBL_CUSTOM SET EMAIL = ?,age =? WHERE CUSTOM_ID = ?";
         try (Connection connection = getConnection();
