@@ -12,6 +12,7 @@ ALTER TABLE p_buy ADD money number(7) CHECK (money >=10000);
 
 -- 웹애플리케이션(인터넷 환경) 개발할 때, JDBC 에서 사용자가 원하는 기능 요청 하나에 sql을 1개씩만 실행을 합니다.
 --					   프로시저를 이용하면 요청 한번에 대해 많은 SQL을 실행을 할수 있습니다.
+--JDBC 자바와 디비를 연결하는 프로토콜
 -- 데이베이스관점에는 `무결성`(정확성) 을 유지할 수 있는 방법.
 -- 프로시저에서 트잰잭션을 관리하는 예시
 CREATE OR REPLACE PROCEDURE"C##IDEV" proc_set_money(	  
