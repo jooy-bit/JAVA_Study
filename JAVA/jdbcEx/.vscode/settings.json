@@ -3,7 +3,7 @@
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "d:\\Class231228\\설치프로그램\\lombok.jar",
-        "d:\\Class231228\\설치프로그램\\ojdbc11.jar"
+        "d:\\Class231228\\installprogram\\lombok.jar",
+        "d:\\Class231228\\installprogram\\ojdbc11.jar"
     ]
 }
