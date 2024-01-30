@@ -15,13 +15,24 @@ public class ProductApp {
        cart[7] = new Electronics(2250000, "lg냉장고");
     
     //[2]
-       System.out.println(cart[5].power(0.9));
+    Electronics tv = null;;
+    if (cart[5]instanceof Electronics && cart[5]!=null) {
+        tv = (Electronics) cart[5];
+        tv.setKwh(0.9);
+        System.out.println(tv.power());
+    }
 
     //[3]
        for (int i = 0; i < cart.length; i++) {
         if (cart[i].getPrice()>=100000) {
             System.out.println(cart[i].toSring());
         }else continue;        
+       }
+       for (Product p : cart) {
+        if (p!=null&&p.price>=100000) {
+            System.out.println(p);
+        }
+        
        }
     //[4]
     for (int i = 0; i < cart.length; i++) {

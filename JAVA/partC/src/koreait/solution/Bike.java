@@ -8,9 +8,10 @@ public class Bike extends Product{
     //1-[3]
     public Bike(int price,String prdName, int speed) {
         //super(); //자식클래스는 부모 생성자 반드시 호출 한다. -super()는 생략 가능하다
-        super.price =price;
-        super.prdName =prdName;
+        super(price,prdName);
         //price,prdName은 protected 필드이므로 자식은 직접 접근 가능
+        super.prdName = prdName;
+        super.price = price;
         this.speed =speed;
     }
     //1-[8]  추상클래스 상속 받았으므로 반드시 추상메소드 구현 (재정의)
@@ -32,7 +33,7 @@ public class Bike extends Product{
         return "당신은 이것을 시속 "+this.speed+"km로 탈 수 있습니다";
     }
 
-    //1-[10]
+    //1-[10] toString
     @Override
     public String toString() {
         return "Bike [ "+super.toString()+", speed=" +speed + " ]";
@@ -44,20 +45,21 @@ public class Bike extends Product{
  * ELectronics
 */
 class ELectronics extends Product {
-
-
-
     //price,prdName 필드값만 초기화 - 생성자
     public ELectronics(int price,String prdName){
-        super();
+        //super();
+        super(price,prdName);
         this.price =price;
         this.prdName =prdName;
+
     }
+    
     //1-[9]
     @Override
     public String sell(Object object) {
             return String.format("[%s]증정- %s", this.prdName,object);
     }
+    
     //1-[6]
     private double kwh;
     //2-[2]에서 필요해서 getter setter 만들어야 함
@@ -76,4 +78,5 @@ class ELectronics extends Product {
     public String toString() {
         return "ELectronics [ "+super.toString()+", kwh=" + kwh + " ]";
     }
+    
 }
