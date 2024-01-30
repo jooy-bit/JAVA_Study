@@ -1,6 +1,8 @@
 package project.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import jdbc.day1.BuyVo;
 
@@ -41,7 +43,7 @@ public class TblbuyDao {
     }
     
     
-    //[3]구매 수량 변경
+    //[3]구매 수량 변경 pk는 행 식별합니다. 특정 행을 수정하려면  where 조건컬럼은 buy_idx(pk)
     public void update(BuyVo vo){
         String sql = "update tbl_buy set quantity = ?  where buy_idx = ?";
         try (Connection connection = getConnection();
@@ -55,20 +57,23 @@ public class TblbuyDao {
     }
 
     //리스트 id 별로 수량보기
-    public BuyVo getBuy(String pname){
-        String sql ="select*from tbl_Buy where cusomid = ?";
+    public List<BuyVo> getBuy(String customId){
+        List<BuyVo> list = new ArrayList<BuyVo>();
+        String sql ="select*from tbl_Buy where customid = ?";
         BuyVo vo = null;
         try (Connection connection = getConnection();
         PreparedStatement pstmt = connection.prepareStatement(sql);) {
-            pstmt.setString(1, pname);
+            pstmt.setString(1, customId);
             ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) vo= new BuyVo(rs.getInt("buyIdx"),rs.getString("customId"),rs.getString("pcode"),rs.getInt("quantity"),rs.getDate("buyDate"));
-
+            while (rs.next()) {
+                vo= new BuyVo(rs.getInt("buy_Idx"),rs.getString("customId"),rs.getString("pcode"),rs.getInt("quantity"),rs.getDate("buy_Date"));
+                list.add(vo);
+            }
             rs.close();
         } catch (SQLException e) {
             System.out.println("getBuy 실행 예외 : "+e.getMessage());
         }
-        return vo;
+        return list;
     }
 
 }

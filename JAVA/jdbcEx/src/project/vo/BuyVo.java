@@ -1,4 +1,4 @@
-package jdbc.day1;
+package project.vo;
 
 import java.sql.*;
 
@@ -34,8 +34,8 @@ public class BuyVo {
     }
     @Override
     public String toString() {
-        return "BuyVo [buy_idx=" + buy_idx + ", customid=" + customid + ", pcode=" + pcode + ", quantity=" + quantity
-                + ", buy_date=" + buy_date + "]";
+        return "[ buy_idx=" + buy_idx + ", customid=" + customid + ", pcode=" + pcode + ", quantity=" + quantity
+                + ", buy_date=" + buy_date + " ]";
     }
     @Override
     public int hashCode() {

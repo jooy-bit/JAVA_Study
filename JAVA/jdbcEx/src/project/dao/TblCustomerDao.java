@@ -56,15 +56,19 @@ public class TblCustomerDao {
         
     }
 
-    //회원 정보 조회 select*from tbl_custom where custom_id = ?
+    //회원 정보 PK 조회 select*from tbl_custom where custom_id = ? 조회 행 결과 1게
     public CustomerVo getCustomer(String customerId){
-        String sql ="select*from tbl_custom where custom_id = ?";
         CustomerVo vo = null;
+        String sql ="select*from tbl_custom where custom_id = ?";
         try (Connection connection = getConnection();
         PreparedStatement pstmt = connection.prepareStatement(sql);) {
             pstmt.setString(1, customerId);
             ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) vo= new CustomerVo(rs.getString("custom_id"),rs.getString("name"),rs.getString("email"),rs.getInt("age"),rs.getDate("reg_date"));
+            if (rs.next()) vo= new CustomerVo(rs.getString("custom_id"),
+                                                rs.getString("name"),
+                                                rs.getString("email"),
+                                                rs.getInt("age"),
+                                                rs.getDate("reg_date"));
             rs.close();
         } catch (SQLException e) {
             System.out.println("getCustomer 실행 예외 : "+e.getMessage());
@@ -81,7 +85,11 @@ public class TblCustomerDao {
         PreparedStatement pstmt = connection.prepareStatement(sql);){
         ResultSet rs = pstmt.executeQuery(sql);
         while(rs.next()){
-            vo= new CustomerVo(rs.getString("custom_id"),rs.getString("name"),rs.getString("email"),rs.getInt("age"),rs.getDate("reg_date"));
+            vo= new CustomerVo(rs.getString("custom_id"),
+                                rs.getString("name"),
+                                rs.getString("email"),
+                                rs.getInt("age"),
+                                rs.getDate("reg_date"));
             list.add(vo);
          } rs.close();
         } catch (SQLException e) {
