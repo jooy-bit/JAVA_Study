@@ -1,7 +1,9 @@
-package jdbc.day1;
+package project.dao;
 
 import java.sql.*;
 import java.util.*;
+
+import project.vo.ProductVo;
 
 public class ProductDao {
     public static final String URL ="jdbc:oracle:thin:@//localhost:1521/xe";

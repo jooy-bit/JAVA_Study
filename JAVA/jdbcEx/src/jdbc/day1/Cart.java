@@ -1,5 +1,7 @@
 package jdbc.day1;
 
+import project.dao.TblbuyDao;
+
 public class Cart {
     public static void main(String[] args) {
         System.out.println("구매할 사용자 간편 로그인이 필요합니다");

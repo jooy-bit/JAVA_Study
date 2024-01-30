@@ -1,7 +1,9 @@
-package jdbc.day1;
+package project.dao;
 
 import java.sql.*;
 import java.util.*;
+
+import project.vo.CustomerVo;
 
 public class TblCustomerDao {
     public static final String URL ="jdbc:oracle:thin:@//localhost:1521/xe";
@@ -75,9 +77,9 @@ public class TblCustomerDao {
         ArrayList<CustomerVo> list = new ArrayList<CustomerVo>();
         String sql ="select*from tbl_custom";
         CustomerVo vo = null;
-        try {Connection connection = getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery(sql);
+        try (Connection connection = getConnection();
+        PreparedStatement pstmt = connection.prepareStatement(sql);){
+        ResultSet rs = pstmt.executeQuery(sql);
         while(rs.next()){
             vo= new CustomerVo(rs.getString("custom_id"),rs.getString("name"),rs.getString("email"),rs.getInt("age"),rs.getDate("reg_date"));
             list.add(vo);

@@ -1,9 +1,9 @@
 package jdbc.day1;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
+
+import project.dao.TblCustomerDao;
+import project.vo.CustomerVo;
 
 public class CustomerApp {
     
@@ -56,5 +56,6 @@ public class CustomerApp {
         customId = System.console().readLine();
         System.out.println(dao.getCustomer(customId));
     }   //main end
+    
 
 }

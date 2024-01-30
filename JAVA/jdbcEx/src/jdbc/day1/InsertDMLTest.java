@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import project.vo.CustomerVo;
+
 public class InsertDMLTest {    //insert data 값이 고정된 예시
     public static void main(String[] args) {
         System.out.println("우리 쇼핑몰 [회원가입] 환영합니다");

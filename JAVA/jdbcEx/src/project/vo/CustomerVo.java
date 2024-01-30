@@ -1,4 +1,4 @@
-package jdbc.day1;
+package project.vo;
 
 import java.sql.Date;
 
@@ -42,8 +42,7 @@ public class CustomerVo {        //tbl_custom 테이블의 컬럼과 1:1 대응�
 
     @Override
     public String toString() {
-        return "BuyVo [customId=" + customId + ", name=" + name + ", email=" + email + ", age=" + age + ", reg_date="
-                + reg_date + "]";
+        return "["+customId+ ", " + name + ", " + email + ", " + age + ", "+ reg_date + "]";
     }
 
     //참고 : 아래 2개의 메소드가 정의되어야 진짜 Vo입니다 -> 필드값이 같으면 값이 같은 객체로 처리된다

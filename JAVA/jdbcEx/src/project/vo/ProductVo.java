@@ -1,4 +1,4 @@
-package jdbc.day1;
+package project.vo;
 
 public class ProductVo {
     private String pcode;
