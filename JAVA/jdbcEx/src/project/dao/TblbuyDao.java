@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.vo.BuyVo;
+import project.vo.CustomerByVo;
 
 public class TblbuyDao {
     public static final String URL ="jdbc:oracle:thin:@//localhost:1521/xe";
@@ -57,21 +58,31 @@ public class TblbuyDao {
     }
 
     //리스트 id 별로 수량보기
-    public List<BuyVo> getBuy(String customId){
-        List<BuyVo> list = new ArrayList<BuyVo>();
-        String sql ="select*from tbl_Buy where customid = ?";
-        BuyVo vo = null;
+    public List<CustomerByVo> selectCustomerList(String customId){
+        List<CustomerByVo> list = new ArrayList<CustomerByVo>();
+        String sql ="SELECT BUY_IDX, TB.PCODE, PNAME, PRICE, QUANTITY,BUY_DATE \r\n" +
+        "FROM TBL_BUY TB \r\n" +
+        "LEFT JOIN TBL_PRODUCT TP \r\n" +
+        "ON TB.PCODE = TP.PCODE \r\n" +
+        "WHERE TB.CUSTOMID = ? \r\n"+
+        "ORDER BY PNAME ASC";
+        ;
+                        CustomerByVo vo = null;
         try (Connection connection = getConnection();
         PreparedStatement pstmt = connection.prepareStatement(sql);) {
             pstmt.setString(1, customId);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                vo= new BuyVo(rs.getInt("buy_Idx"),rs.getString("customId"),rs.getString("pcode"),rs.getInt("quantity"),rs.getDate("buy_Date"));
+                vo= new CustomerByVo(rs.getString(1),
+                                rs.getString(2),
+                                rs.getString(3),
+                                rs.getInt(4),
+                                rs.getInt(5),rs.getTimestamp(6));
                 list.add(vo);
             }
             rs.close();
         } catch (SQLException e) {
-            System.out.println("getBuy 실행 예외 : "+e.getMessage());
+            System.out.println("selectCustomerList 실행 예외 : "+e.getMessage());
         }
         return list;
     }
