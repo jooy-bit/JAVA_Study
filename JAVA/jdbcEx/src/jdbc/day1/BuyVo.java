@@ -3,21 +3,21 @@ package jdbc.day1;
 import java.sql.*;
 
 public class BuyVo {
-    private String buy_idx;
+    private Integer buy_idx;
     private String customid;
     private String pcode;
     private int quantity;
     private Date buy_date;
 
     
-    public BuyVo(String buy_idx, String customid, String pcode, int quantity, Date buy_date) {
+    public BuyVo(Integer buy_idx, String customid, String pcode, int quantity, Date buy_date) {
         this.buy_idx = buy_idx;
         this.customid = customid;
         this.pcode = pcode;
         this.quantity = quantity;
         this.buy_date = buy_date;
     }
-    public String getBuy_idx() {
+    public Integer getBuy_idx() {
         return buy_idx;
     }
     public String getCustomid() {
