@@ -5,6 +5,7 @@ import java.util.List;
 import project.dao.ProductDao;
 import project.dao.TblbuyDao;
 import project.vo.BuyVo;
+import project.vo.CustomerByVo;
 import project.vo.ProductVo;
 
 public class CartApp_2 {
@@ -14,15 +15,8 @@ public class CartApp_2 {
         System.out.println("[C] 카테고리별 상품 조회    [P] 상품명 검색     [M]나의 구매내역");
         System.out.println("[B] 구매하기   [D] 구매 취소   [Q] 구매 수량 변경  [X] 구매 종료");
         System.out.println(".".repeat(50));
-    }
-    // public static void showMypage(){
-
-    //     List<CustomerByVo> list = dao.selectCustomerList(customId);
-    //                 for (CustomerByVo vo : list) {
-    //                     System.out.println(vo);
-    //                 }
-    //                 System.out.println("-".repeat(60));
-    // }
+    } 
+    
 
     public static void main(String[] args) {
         CartApp_2 app = new CartApp_2();
@@ -40,6 +34,7 @@ public class CartApp_2 {
         
         System.out.println("\n[C] 카테고리별 상품 조회    [P] 상품명 검색     [M]나의 구매내역");
         System.out.println("[B] 구매하기   [D] 구매 취소   [Q] 구매 수량 변경  [X] 구매 종료");
+        System.out.println("-".repeat(60));
         boolean run = true;
 
         while (run) {       //메뉴 선택 반복
@@ -49,21 +44,34 @@ public class CartApp_2 {
             String select = System.console().readLine();
             switch (select) {
                 case "M","m": //나의 구매내역
-                    
+                    System.out.println("-".repeat(60));
+                    System.out.println("[M]나의 구매내역");
+                    List<CustomerByVo> list = dao.selectCustomerList(customId);
+                    for (CustomerByVo o : list) {
+                    System.out.println(o);
+                }
+                    System.out.println("-".repeat(60));
                     break;
                                 //[2] 구매 취소 - delete
                                 //  [3] 구매 수량 변경 - update
                 case "c","C":
+                    System.out.println("-".repeat(60));
+                    System.out.println("[C] 카테고리별 상품 조회");
                     System.out.println("카테고리 : A1-과일  A2-수입과일  B1-인스턴스  B3-선물세트  C1-과자");
+                    System.out.println("-".repeat(60));
+                    System.out.println("-".repeat(60));
                     System.out.print("카테고리입력>>>>");
                     String category = System.console().readLine();
                     List<ProductVo> Cproduct =pao.selectByCategory(category);
                     for (ProductVo productVo : Cproduct) {
                         System.out.println(productVo);
                     }
+                    System.out.println("-".repeat(60));
                     break;
 
                 case"p","P":
+                    System.out.println("-".repeat(60));
+                    System.out.println("[P]상품명 검색");
                     System.out.print("상품명 입력>>>>");
                     String pname =System.console().readLine();
                     List<ProductVo> pName = pao.selectByPname(pname);
@@ -73,31 +81,38 @@ public class CartApp_2 {
                     break;
 
                 case"B","b":
+                    System.out.println("-".repeat(60));
                     System.out.println("[B]구매하기");
                     System.out.print(" 제품 코드를 입력하세요. __ ");
                     String pcode = System.console().readLine();
                     System.out.print(" 제품 수량를 입력하세요. __ ");
                     int quantity = Integer.parseInt(System.console().readLine());
+                    System.out.println("-".repeat(60));
                     vo = new BuyVo(0, customId, pcode, quantity, null);
                     dao.buy(vo);
                     break;
 
                 case"D","d":
+                    System.out.println("-".repeat(60));
                     System.out.println("[D]구매취소");
                     System.out.print(" 제품 번호를 입력하세요. __ ");
                     int buy_idx = Integer.parseInt(System.console().readLine());
+                    System.out.println("-".repeat(60));
                     vo = new BuyVo(buy_idx, null, null, 0, null);
                     dao.delete(vo);
                     break;
 
                 case"Q","q":
+                System.out.println("-".repeat(60));
                     System.out.println("[Q]구매취소");
                     System.out.print(" 제품 번호를 입력하세요. __ ");
                     buy_idx = Integer.parseInt(System.console().readLine());
                     System.out.print(" 제품 수량를 입력하세요. __ ");
                     quantity = Integer.parseInt(System.console().readLine());
+                    System.out.println("-".repeat(60));
                     vo = new BuyVo(buy_idx, null, null, quantity, null);
                     dao.update(vo);
+                    System.out.println("-".repeat(60));
                     break;
 
                 case "X","x": 
