@@ -35,8 +35,11 @@ public class ProductApp {
         
        }
     //[4]
-    for (int i = 0; i < cart.length; i++) {
-        if (cart[i].ride(5)!=null) { System.out.println("caSt[i].ride(): "+ cart[i].ride());
+    for (Product product : cart) {
+        if (p!=) {
+            
+        }
+        System.out.println();
     }
 
     //[5]

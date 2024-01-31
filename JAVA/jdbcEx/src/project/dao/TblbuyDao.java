@@ -35,29 +35,33 @@ public class TblbuyDao {
     
     
     //[2]구매 취소 
-    public void delete(BuyVo vo){
+    public int delete(BuyVo vo){
+        int result = 0;
         String sql = "delete from tbl_buy where buy_idx =?";
         try (Connection connection = getConnection();
             PreparedStatement pstmt = connection.prepareStatement(sql)){
                 pstmt.setInt(1,vo.getBuy_idx());
-                pstmt.executeUpdate();
+                result = pstmt.executeUpdate();
             }catch (SQLException e) {
             System.out.println("delete 실행 예외 : "+e.getMessage());
         }
+        return result;
     }
     
     
     //[3]구매 수량 변경 pk는 행 식별합니다. 특정 행을 수정하려면  where 조건컬럼은 buy_idx(pk)
-    public void update (Map<String,Integer> arg){//(BuyVo vo){
+    public int update (Map<String,Integer> arg){//(BuyVo vo){
+        int result = 0;
         String sql = "update tbl_buy set quantity = ?  where buy_idx = ?";
         try (Connection connection = getConnection();
         PreparedStatement pstmt = connection.prepareStatement(sql)){
             pstmt.setInt(1,arg.get("quantity"));//vo.getQuantity());
             pstmt.setInt(2,arg.get("buy_idx"));//vo.getBuy_idx());
-            pstmt.executeUpdate();
+            result = pstmt.executeUpdate();
         }catch (SQLException e) {
         System.out.println("update 실행 예외 : "+e.getMessage());
     }
+    return result;
     }
 
     //리스트 id 별로 수량보기
