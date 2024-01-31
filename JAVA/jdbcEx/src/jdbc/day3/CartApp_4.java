@@ -2,6 +2,7 @@ package jdbc.day3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import project.dao.TblbuyDao;
 import project.dao.ProductDao;
@@ -17,7 +18,13 @@ public class CartApp_4 {
     private TblbuyDao buyDao = new TblbuyDao();
     private ProductDao productDao = new ProductDao();
     private List<BuyVo> cart = new ArrayList<>();       //장바구니
+    private Map<String, Integer> priceMap = null;
 
+    public CartApp_4(){
+        this.priceMap = productDao.getPriceTable();
+    }
+
+    
     private void showMenu() {
         System.out.println(".".repeat(70));
         System.out.println("[C] 카테고리별 상품 조회      [P] 상품명 검색     [M]나의 구매내역");
@@ -51,25 +58,52 @@ public class CartApp_4 {
             System.out.println(productVo);
         }
     }                    
-
-    private void addCartItem(String customerid) {
+///////////////////////////////////////장바구니 : 테이블에 직접 추가하지 않고 List 변수 사용////////////////////////////////////////////////////////
+    private void addCartItem(String customerid) { 
         System.out.println(".................. 장바구니 :: 물품 담기 ...................");
         System.out.print("구매할 상품코드 입력하세요.__");
+        String pcode = System.console().readLine();
         System.out.print("구매할 수량 입력하세요.__");
+        int quantity =Integer.parseInt(System.console().readLine());
+        cart.add(new BuyVo(0, customerid, pcode, quantity, null));
      }
 
     private void showCartList() {
+        long totalMoney = 0;
         System.out.println(".................. 장바구니 :: 목록 보기...................");
+        for (int i = 0; i < cart.size(); i++) {
+            System.out.println("번호 :  "+i+"번\t물품 :  "+cart.get(i));
+            //할일 3 : 각 구매 물품의 수량과 가갹을 곱허여 totalMoney에 누적하여 더하기
+        }
     }
 
     private void removeCartItem() {
         System.out.println(".................. 장바구니 :: 물품 삭제 ...................");
         System.out.print( "삭제할 번호 입력__");
+        int index = Integer.parseInt(System.console().readLine());
+        if (index<0||index>=cart.size()) {
+            System.out.println("잘못된 장바구니 상품 번호 입니다");
+            return;
+        }
+        cart.remove(index);
         System.out.println("물품을 장바구니에서 삭제했습니다.");
     }
 
     private void buyCartItems() {
-        System.out.println(".................. 장바구니 :: 물품 모두 구매 ...................");
+        if (cart.size() ==0) {
+            System.out.println("장바구니가 비어있습니다. 구매하실 물품을 장바구니에 담아주세요");
+            return;
+        }
+     System.out.println(".................. 장바구니 :: 물품 모두 구매 ...................");
+        int result = buyDao.insertMany(cart);
+        if (result > 0) {
+            System.out.println("장바구니에 담긴 물품 구매가 정상적으로 완료되었습니다");
+            cart.clear();
+        }else{
+            System.out.println("장바구니 담긴 물품 구매에 실해하였습니다");
+        }
+    
+    
     }
 
        //상품 목록을 선택한 카테고리에 대해 보여주기  (구매할 상품 조회)

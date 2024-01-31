@@ -77,4 +77,25 @@ public class ProductDao {
         return list;
     }
 
+
+    public Map<String,Integer> getPriceTable(){
+        Map<String, Integer> map = new HashMap<>();
+
+        ResultSet result;
+        String sql = "SELECT SUM(PRICE*QUANTITY)  \r\n" + //
+                "FROM TBL_BUY TP\r\n" + //
+                "JOIN TBL_PRODUCT TB \r\n" + //
+                "ON TB.PCODE = TP.PCODE\r\n" + //
+        try (
+            Connection connection = getConnection();
+            PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                
+                result = pstmt.executeQuery();
+                System.out.println(result.getString(1));
+            } catch (SQLException e) {
+                System.out.println("getPriceTable 실행 예외 : "+e.getMessage());
+        }
+    }
+
+
 }
