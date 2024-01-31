@@ -19,7 +19,7 @@ public class TblbuyDao {
 //excuteUpate 메소드는 insert,update,delete가 정상 실행(반영된 행 있으면)되면 1을 리턴
 //                      특히 update, delete는 조건에 맞는 행이 없어서 반영된 행이 없으면 "0" 리턴
 //[1]구매하기 
-    public int buy(BuyVo vo){
+    public void buy(BuyVo vo){
         String sql = "insert into tbl_buy(buy_idx,cusomid,pcode,quantity,buy_date) values(BUY_PK_SEQ.nextval,?,?,?,sysdate)";
         try (Connection connection = getConnection();
             PreparedStatement pstmt = connection.prepareStatement(sql)){
@@ -35,17 +35,15 @@ public class TblbuyDao {
     
     
     //[2]구매 취소 
-    public int delete(BuyVo vo){
-        int result = 0;
+    public void delete(BuyVo vo){
         String sql = "delete from tbl_buy where buy_idx =?";
         try (Connection connection = getConnection();
             PreparedStatement pstmt = connection.prepareStatement(sql)){
                 pstmt.setInt(1,vo.getBuy_idx());
-                result = pstmt.executeUpdate();
+                pstmt.executeUpdate();
             }catch (SQLException e) {
             System.out.println("delete 실행 예외 : "+e.getMessage());
         }
-        return result;
     }
     
     
@@ -94,4 +92,42 @@ public class TblbuyDao {
         return list;
     }
 
+    //장바구니 모두 구메 batch(배치)는 일괄 처리 : 실행할 insert, update,delete 등의 데이터 저장 DML을 일괄처리한다
+    //트랜잭션 : 특정요구사항에 대한 기능을 실행할 여러 SQL 명령들로 구성된 작업단위
+    //          예시- cart에 저장된 상품 중 하나라도 참조 값이 없는 pcode가 있으면 rollback, 모두 정상이면 commit 트랜잭션 commit 모드가 auto에서 수동으로 변경
+    //              => sql 트랜잭션 commit 모드가 auto -> 수동으로 변경 
+    public int insertMany(List<BuyVo>cart){
+        String sql = "insert into tbl_buy(buy_idx,cusomid,pcode,quantity,buy_date) values(BUY_PK_SEQ.nextval,?,?,?,sysdate)";
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        int count = 0;
+        try {
+            connection =getConnection();
+            pstmt = connection.prepareStatement(sql);
+            connection.setAutoCommit(false);        //※ auto 커밋 해제
+            for (BuyVo vo : cart) {
+                pstmt.setString(1, vo.getCustomid());
+                pstmt.setString(2, vo.getPcode());
+                pstmt.setInt(3, vo.getQuantity());
+                pstmt.addBatch();   //sql을 메모리에 모아두기 insert sql에 대입되는 매개변수값은 매번 다릅니다
+                count++;
+            }
+            pstmt.executeBatch();       //※ 모아둔 sql을 일괄 실행 , 실행 중 무결성 오류 생기면
+            connection.commit();        //   catch에서 rollback
+        } catch (SQLException e) {      //예외 발생 : 트랜잭션 처리
+            try {
+                connection.rollback();
+                pstmt.close();
+                connection.close();
+            } catch (SQLException e1) {}
+            count = -1;
+            System.out.println("구매 부가능한 상품이 있습니다");
+            System.out.println("장바구니 구메 실행 예외 발생 :  "+e.getMessage());
+        }finally{       //정상실행와 예외 모두에 대해 자원 해제
+            try{
+                pstmt.close();
+                connection.close();
+            } catch(SQLException e2){}
+        }return count;
+    }
 }
