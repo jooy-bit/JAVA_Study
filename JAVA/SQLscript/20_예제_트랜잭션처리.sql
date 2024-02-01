@@ -62,3 +62,26 @@ END;
 
 
 
+CREATE OR REPLACE PROCEDURE max_custom(      -- 자바의 메소드 인자와 같은 개념
+   p_name OUT tbl_custom.NAME %TYPE,      -- 출력(리턴)값이 있다면 OUT 변수를 사용합니다.
+   p_age OUT tbl_custom.AGE %TYPE
+)
+IS
+   maxval number(5);
+   cid tbl_custom.custom_id %TYPE;
+BEGIN
+   SELECT max(quantity)      -- 구매 수량 최대값
+      INTO maxval          -- 조회 결과를 일반변수에 저장
+   FROM tbl_buy; 
+
+   SELECT customid
+      INTO cid            -- 조회 결과를 일반변수에 저장
+   FROM tbl_buy
+   WHERE quantity = maxval;
+
+   SELECT name,age 
+      INTO p_name , p_age      -- 출력매개변수에 저장
+   FROM "TBL_CUSTOM" tc 
+   WHERE CUSTOM_ID =cid;
+END;
+

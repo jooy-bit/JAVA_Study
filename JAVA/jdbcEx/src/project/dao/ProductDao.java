@@ -85,7 +85,8 @@ public class ProductDao {
         String sql = "SELECT SUM(PRICE*QUANTITY)  \r\n" + //
                 "FROM TBL_BUY TP\r\n" + //
                 "JOIN TBL_PRODUCT TB \r\n" + //
-                "ON TB.PCODE = TP.PCODE\r\n" + //
+                "ON TB.PCODE = TP.PCODE\r\n" + 
+                "WHERE PCODE = ?";//
         try (
             Connection connection = getConnection();
             PreparedStatement pstmt = connection.prepareStatement(sql)) {
