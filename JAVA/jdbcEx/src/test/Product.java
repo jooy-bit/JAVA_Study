@@ -1,6 +1,6 @@
 package test;
 
-public abstract class ProductA {
+public abstract class Product {
     protected int price;
     protected String prdName;
     public abstract String sell(Object obj);
@@ -10,7 +10,7 @@ public abstract class ProductA {
         return "price=" + price + ", prdName=" + prdName ;
     }
 
-    public ProductA(int price, String prdName) {
+    public Product(int price, String prdName) {
         this.price = price;
         this.prdName = prdName;
     }

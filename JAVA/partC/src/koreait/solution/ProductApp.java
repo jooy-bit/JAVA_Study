@@ -38,6 +38,15 @@ public class ProductApp {
             }
         }
 
+        Bike bike = null;
+        for (int i = 0; i < cart.length; i++) {
+            if (cart[i] !=null && cart[i] instanceof Bike) {
+                bike = (Bike) cart[i];
+                System.out.println(bike.ride());
+            }
+            
+        }
+
         //2-[5]
         String result =cart[3].sell(20);
         System.out.println(result);

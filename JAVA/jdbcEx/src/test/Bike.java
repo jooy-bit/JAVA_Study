@@ -1,6 +1,6 @@
 package test;
 
-public class Bike extends ProductA{
+public class Bike extends Product{
 
     private int speed;
     public Bike(int price,String prdName, int speed){
@@ -32,7 +32,7 @@ public class Bike extends ProductA{
     }
 
 }
-class ELectronics extends ProductA{
+class ELectronics extends Product{
     private double kwh;
     
     public ELectronics(int price,String prdName){
