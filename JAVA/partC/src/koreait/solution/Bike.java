@@ -51,7 +51,6 @@ class ELectronics extends Product {
         super(price,prdName);
         this.price =price;
         this.prdName =prdName;
-
     }
     
     //1-[9]

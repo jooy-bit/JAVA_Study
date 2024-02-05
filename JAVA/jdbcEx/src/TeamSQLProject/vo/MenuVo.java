@@ -12,6 +12,5 @@ public class MenuVo {
     private String menu_name;
     private int price;
 
-    @Override
-    public 
+   
 }
